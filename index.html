@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sign In or Register</title>
+</head>
+<body>
+    <div class="container">
+        <form id="loginForm">
+            <h2 class="title">Login with your Account</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email address">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Your Password">
+                </div>
+                <span class="help-text">At least 6 characters</span>
+            </div>
+            <button type="submit" class="btn-submit">Login</button>
+            <p>
+                I don't have an Account 
+                <a href="#" id="registerButton">Register Here</a>
+            </p>
+        </form>
+
+        <form id="registrationForm">
+            <h2 class="title">Register your Account</h2>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input type="email" id="reg-email" placeholder="Email address">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-pass">Confirm Password</label>
+                <div class="input-group">
+                    <input type="password" id="reg-password" placeholder="Enter Password">
+                </div>
+                <span class="help-text">At least 8 characters</span>
+            </div>
+            <button type="submit" class="btn-submit">Register</button>
+            <p>
+                I already have an Account 
+                <a href="#" id="loginButton">Login</a>
+            </p>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
