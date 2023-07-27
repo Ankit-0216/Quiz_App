@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pause and Resume Countdown Timer</title>
+  </head>
+  <body>
+    <h1>Countdown Timer: <span id="timerDisplay"></span></h1>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resumeTimer()">Resume</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <script>
+      // Set the initial time in seconds
+      let totalTime = 60;
+      let currentTime = totalTime;
+      let intervalId = null;
+      let isPaused = false;
+
+      function updateTimerDisplay() {
+        const minutes = Math.floor(currentTime / 60);
+        const seconds = currentTime % 60;
+        document.getElementById("timerDisplay").innerText = `${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      }
+
+      function startTimer() {
+        if (!intervalId) {
+          intervalId = setInterval(() => {
+            if (!isPaused) {
+              currentTime--;
+              updateTimerDisplay();
+
+              if (currentTime === 0) {
+                clearInterval(intervalId);
+                intervalId = null;
+                alert("Time's up!");
+              }
+            }
+          }, 1000); // Update timer every 1000ms (1 second)
+        }
+      }
+
+      function pauseTimer() {
+        isPaused = true;
+      }
+
+      function resumeTimer() {
+        isPaused = false;
+      }
+
+      function resetTimer() {
+        clearInterval(intervalId);
+        intervalId = null;
+        currentTime = totalTime;
+        updateTimerDisplay();
+        isPaused = false;
+      }
+    </script>
+  </body>
+</html>

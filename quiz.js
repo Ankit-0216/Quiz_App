@@ -38,8 +38,8 @@ const questions = [
   {
     question: "What is the nationa animal of India?",
     answers: [
-      { text: "Tiger", correct: false },
-      { text: "Lion", correct: true },
+      { text: "Tiger", correct: true },
+      { text: "Lion", correct: false },
       { text: "Elephant", correct: false },
       { text: "Peacock", correct: false },
     ],
@@ -80,6 +80,11 @@ const nextButton = document.getElementById("next-btn");
 let currentQuestionIndex = 0;
 let score = 0;
 
+let totalTime = 10;
+let currentTime = totalTime;
+let intervalId = null;
+let isPaused = false;
+
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
@@ -89,6 +94,8 @@ function startQuiz() {
 
 function showQuestion() {
   resetState();
+  startTimer();
+  document.getElementById("timer").style.display = "block";
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = questionNo + "." + currentQuestion.question;
@@ -108,12 +115,14 @@ function showQuestion() {
 
 function resetState() {
   nextButton.style.display = "none";
+  document.getElementById("timer").style.display = "none";
   while (answerButtons.firstChild) {
     answerButtons.removeChild(answerButtons.firstChild);
   }
 }
 
 function selectAnswer(e) {
+  pauseTimer();
   const selectedBtn = e.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
   if (isCorrect) {
@@ -140,19 +149,57 @@ function showScore() {
 
 function handleNextButton() {
   currentQuestionIndex++;
-  if (currentQuestionIndex < questions.lenght) {
+  if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
     showScore();
   }
 }
 
-nextButton.addEventListener("click", () => {
+function goToNextQuestion() {
+  resetTimer();
   if (currentQuestionIndex < questions.length) {
     handleNextButton();
   } else {
     startQuiz();
   }
-});
+}
+
+nextButton.addEventListener("click", goToNextQuestion);
 
 startQuiz();
+
+// Timer
+
+function updateTimerDisplay() {
+  document.getElementById("seconds").innerText = currentTime;
+}
+
+function startTimer() {
+  if (!intervalId) {
+    intervalId = setInterval(() => {
+      if (!isPaused) {
+        currentTime--;
+        updateTimerDisplay();
+
+        if (currentTime === 0) {
+          clearInterval(intervalId);
+          intervalId = null;
+          goToNextQuestion();
+        }
+      }
+    }, 1000);
+  }
+}
+
+function pauseTimer() {
+  isPaused = true;
+}
+
+function resetTimer() {
+  clearInterval(intervalId);
+  intervalId = null;
+  currentTime = totalTime;
+  updateTimerDisplay();
+  isPaused = false;
+}
