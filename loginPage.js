@@ -46,7 +46,6 @@ loginForm.addEventListener("submit", (event) => {
   // Retrieve user data from local storage
   const userData = JSON.parse(localStorage.getItem("user-data")) || [];
 
-  // higher-order array methods
   let isValidUser = false;
   let currentUserData;
   userData.forEach((item) => {
@@ -59,7 +58,8 @@ loginForm.addEventListener("submit", (event) => {
   if (isValidUser) {
     localStorage.setItem("current-user-name", currentUserData.name);
     localStorage.setItem("current-user-email", currentUserData.email);
-    message.innerText = "Login successful.";
+    // message.innerText = "Login successful.";
+    window.location.href = "home.html";
   } else {
     message.innerText = "Invalid username or password.";
   }

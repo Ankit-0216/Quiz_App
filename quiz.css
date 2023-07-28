@@ -44,19 +44,38 @@ body {
   padding: 30px;
 }
 
-.app h1 {
+.header {
+  margin-bottom: 1.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.6em;
+  border-bottom: 0.3em solid #000000;
+}
+
+h1 {
   font-size: 32px;
   color: var(--dark-blue);
   font-weight: 600;
-  border-bottom: 3px solid #333;
+  /* border-bottom: 3px solid #333; */
   padding-bottom: 20px;
+}
+
+#timer {
+  background-color: #d97b7b;
+  width: 6em;
+  border-radius: 1.4em;
+  display: flex;
+  align-items: normal;
+  justify-content: space-between;
+  padding: 0.4em 0.7em;
 }
 
 .quiz {
   padding: 20px 0;
 }
 
-.quiz h2 {
+.quiz h3 {
   font-size: 22px;
   color: var(--darker-blue);
   font-weight: 600;
@@ -64,7 +83,8 @@ body {
 }
 
 .button {
-  background: #fff;
+  background: #92aff2;
+  border-color: #13256d;
   color: #222;
   font-weight: 800;
   width: 100%;

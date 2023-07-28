@@ -47,11 +47,10 @@ body {
   font-size: 32px;
   color: var(--dark-blue);
   font-weight: 600;
-  border-bottom: 3px solid #333;
   padding-bottom: 20px;
 }
 
-.container h2 {
+.container h3 {
   font-size: 22px;
   color: var(--darker-blue);
   font-weight: 600;

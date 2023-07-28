@@ -6,4 +6,3 @@ function showName() {
 }
 showName();
 
-function timer() {}
